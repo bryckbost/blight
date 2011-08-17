@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Blight</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="UTF-8">
+    <style>
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+
+      #map_canvas {
+        height: 100%;
+      }
+
+      @media print {
+        html, body {
+          height: auto;
+        }
+
+        #map_canvas {
+          height: 650px;
+        }
+      }
+    </style>
+    <script type="text/javascript">
+      function initialize() {
+        var myOptions = {
+          zoom: 13,
+          center: new google.maps.LatLng(42.7875, -86.108889),
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+
+        var map = new google.maps.Map(document.getElementById('map_canvas'),
+            myOptions);
+      }
+
+      function loadScript() {
+        var script = document.createElement('script');
+        script.type = 'text/javascript';
+        script.src = 'http://maps.googleapis.com/maps/api/js?sensor=false&' +
+            'callback=initialize';
+        document.body.appendChild(script);
+      }
+
+      window.onload = loadScript;
+    </script>
+  </head>
+  <body>
+    <div id="map_canvas"></div>
+  </body>
+</html>
