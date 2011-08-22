@@ -28,7 +28,7 @@
     <script type="text/javascript">
       function initialize() {
         var myOptions = {
-          zoom: 13,
+          zoom: 16,
           center: new google.maps.LatLng(42.7875, -86.108889),
           mapTypeId: google.maps.MapTypeId.ROADMAP
         };
@@ -51,19 +51,35 @@
         cnd.setMap(map);
         hd = new google.maps.Polygon({
           paths: [
-            new google.maps.LatLng(42.7902327, -86.1147748), // 8th and Maple
-            new google.maps.LatLng(42.7902576, -86.111969),  // 8th and Pine
-            new google.maps.LatLng(42.7884336, -86.11195),   // 10th and Pine
+            new google.maps.LatLng(42.7892776, -86.1178498), // 9th and Washington
+            new google.maps.LatLng(42.7897665, -86.1178498), // Between 8th and 9th on Washington
+            new google.maps.LatLng(42.7897665, -86.11476),   // Between 8th and 9th on Maple
+            // new google.maps.LatLng(42.7902327, -86.1147748), // 8th and Maple
+            new google.maps.LatLng(42.7893004, -86.114745), // 9th and Maple
+            new google.maps.LatLng(42.7884336, -86.114745), // 10th and Maple
+            new google.maps.LatLng(42.7879946, -86.114745), // Between 10th and 11th on Maple
+            // new google.maps.LatLng(42.7884336, -86.11195),   // 10th and Pine
+            new google.maps.LatLng(42.7879946, -86.1089567), // Between 10th and 11th on River
+            new google.maps.LatLng(42.7884752, -86.1089567), // 10th and River
             new google.maps.LatLng(42.7884752, -86.1071569), // 10th and Central
             new google.maps.LatLng(42.7857444, -86.1071454), // 13th and Central
             new google.maps.LatLng(42.7857345, -86.1089401), // 13th and River
             new google.maps.LatLng(42.7830205, -86.1089008), // 16th and River
             new google.maps.LatLng(42.7830218, -86.1119114), // 16th and Pine
             new google.maps.LatLng(42.785705,  -86.1119666), // 13th and Pine
-            new google.maps.LatLng(42.7856183, -86.1203704), // 13th and Van Raalte
+            new google.maps.LatLng(42.7857050,  -86.114745), // 13th and Maple
+            new google.maps.LatLng(42.78523565,  -86.114745), // Between 13th and 14th on Maple
+            // new google.maps.LatLng(42.7847663,  -86.114763), // 14th and Maple
+            // new google.maps.LatLng(42.7865918, -86.11477),  // 12th and Maple
+            new google.maps.LatLng(42.78523565,  -86.1178967), // Between 13th and 14th on Washington
+            new google.maps.LatLng(42.7861,  -86.1178967),   // Between 12th and 13th on Washington
+            // new google.maps.LatLng(42.7856183, -86.1203704), // 13th and Van Raalte
+            new google.maps.LatLng(42.7861, -86.12033),      // Between 12th and 13th on Van Raalte
+            new google.maps.LatLng(42.786483, -86.1203704),  // 12th and Van Raalte
             new google.maps.LatLng(42.78895,   -86.120379),  // 8th and Van Raalte
+            new google.maps.LatLng(42.7892639, -86.119731),  // 9th and Kollen Park Dr
             ],
-          strokeColor: '#d69',
+          strokeColor: '#e7a',
           strokeWeight: 2,
           fillColor: '#d69'
           });
@@ -97,21 +113,21 @@
       return this.request(path, options, callback);
     }
     
-    var client = new simplegeo.ContextClient('UHYsAGwU2XyWm9Qtp7D68EBQYpnCsWEG');
-    
-    var lat = 42.7758566;
-    var lon = -86.0967353;
-    var options = {filter: "demographics.acs__table=B19001"};
-    var ctx;
-    
-    client.getContext(lat, lon, options, function(err, data) {
-        if (err) {
-            console.error(err);
-        } else {
-            ctx = data;
-        }
-        console.log(ctx.demographics)
-    });
+    // var client = new simplegeo.ContextClient('UHYsAGwU2XyWm9Qtp7D68EBQYpnCsWEG');
+    // 
+    // var lat = 42.7758566;
+    // var lon = -86.0967353;
+    // var options = {filter: "demographics.acs__table=B19001"};
+    // var ctx;
+    // 
+    // client.getContext(lat, lon, options, function(err, data) {
+    //     if (err) {
+    //         console.error(err);
+    //     } else {
+    //         ctx = data;
+    //     }
+    //     console.log(ctx.demographics)
+    // });
     </script>
   </head>
   <body>
