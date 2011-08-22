@@ -35,6 +35,39 @@
 
         var map = new google.maps.Map(document.getElementById('map_canvas'),
             myOptions);
+        cnd = new google.maps.Polygon({
+          paths: [
+            new google.maps.LatLng(42.7904023, -86.0925627), // 8th and Fairbanks
+            new google.maps.LatLng(42.7831436, -86.0923631), // 16th and Fairbanks
+            new google.maps.LatLng(42.7831,    -86.0972157), // 16th and Lincoln
+            new google.maps.LatLng(42.7758566, -86.0967353), // 24th and Lincoln
+            new google.maps.LatLng(42.7757496, -86.1267995), // 24th and Ottawa
+            new google.maps.LatLng(42.7904023, -86.1267995)  // 8th and Ottawa
+            ],
+          strokeColor: '#69d',
+          strokeWeight: 2,
+          fillColor: '#69d'
+          });
+        cnd.setMap(map);
+        hd = new google.maps.Polygon({
+          paths: [
+            new google.maps.LatLng(42.7902327, -86.1147748), // 8th and Maple
+            new google.maps.LatLng(42.7902576, -86.111969),  // 8th and Pine
+            new google.maps.LatLng(42.7884336, -86.11195),   // 10th and Pine
+            new google.maps.LatLng(42.7884752, -86.1071569), // 10th and Central
+            new google.maps.LatLng(42.7857444, -86.1071454), // 13th and Central
+            new google.maps.LatLng(42.7857345, -86.1089401), // 13th and River
+            new google.maps.LatLng(42.7830205, -86.1089008), // 16th and River
+            new google.maps.LatLng(42.7830218, -86.1119114), // 16th and Pine
+            new google.maps.LatLng(42.785705,  -86.1119666), // 13th and Pine
+            new google.maps.LatLng(42.7856183, -86.1203704), // 13th and Van Raalte
+            new google.maps.LatLng(42.78895,   -86.120379),  // 8th and Van Raalte
+            ],
+          strokeColor: '#d69',
+          strokeWeight: 2,
+          fillColor: '#d69'
+          });
+          hd.setMap(map);
       }
 
       function loadScript() {
@@ -46,6 +79,39 @@
       }
 
       window.onload = loadScript;
+    </script>
+    <script type="text/javascript" src="http://cdn.simplegeo.com/js/1.3/simplegeo.context.min.js"></script>
+    <script>
+    simplegeo.ContextClient.prototype.getContext = function(lat, lon, options, callback) {
+      if (callback === undefined) {
+        callback = options;
+        options = {};
+      }
+      var path = "/1.0/context/" + lat + "," + lon + ".json"
+      if (options !== undefined) {
+        path += "?"
+        if (options.filter) {
+          path += options.filter
+        }
+      }
+      return this.request(path, options, callback);
+    }
+    
+    var client = new simplegeo.ContextClient('UHYsAGwU2XyWm9Qtp7D68EBQYpnCsWEG');
+    
+    var lat = 42.7758566;
+    var lon = -86.0967353;
+    var options = {filter: "demographics.acs__table=B19001"};
+    var ctx;
+    
+    client.getContext(lat, lon, options, function(err, data) {
+        if (err) {
+            console.error(err);
+        } else {
+            ctx = data;
+        }
+        console.log(ctx.demographics)
+    });
     </script>
   </head>
   <body>
