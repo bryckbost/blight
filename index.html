@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Copse' rel='stylesheet' type='text/css'>
     <title>The Blight of Holland's Central Neighborhoods</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
@@ -15,21 +17,119 @@
     <meta property="fb:admins" content="15300550"/>
     <meta property="og:description" content="A mashup shedding light on the blight in Holland, Michigan's central neighborhoods"/>
     <style>
+      /*  HTML5 ✰ Boilerplate  */
+
+      html, body, div, span, object, iframe,
+      h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+      abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp,
+      small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li,
+      fieldset, form, label, legend,
+      table, caption, tbody, tfoot, thead, tr, th, td,
+      article, aside, canvas, details, figcaption, figure,
+      footer, header, hgroup, menu, nav, section, summary,
+      time, mark, audio, video {
+        margin: 0;
+        padding: 0;
+        border: 0;
+        font-size: 100%;
+        font: inherit;
+        vertical-align: baseline;
+      }
+
+      article, aside, details, figcaption, figure,
+      footer, header, hgroup, menu, nav, section {
+        display: block;
+      }
+
+      blockquote, q { quotes: none; }
+      blockquote:before, blockquote:after,
+      q:before, q:after { content: ''; content: none; }
+      ins { background-color: #ff9; color: #000; text-decoration: none; }
+      mark { background-color: #ff9; color: #000; font-style: italic; font-weight: bold; }
+      del { text-decoration: line-through; }
+      abbr[title], dfn[title] { border-bottom: 1px dotted; cursor: help; }
+      table { border-collapse: collapse; border-spacing: 0; }
+      hr { display: block; height: 1px; border: 0; border-top: 1px solid #ccc; margin: 1em 0; padding: 0; }
+      input, select { vertical-align: middle; }
+
+      body { font:13px/1.231 sans-serif; *font-size:small; }
+      select, input, textarea, button { font:99% sans-serif; }
+      pre, code, kbd, samp { font-family: monospace, sans-serif; }
+
+      html { overflow-y: scroll; }
+      a:hover, a:active { outline: none; }
+      ul, ol { margin-left: 0; list-style-type: none; }
+      ol {  }
+      nav ul, nav li { margin: 0; list-style:none; list-style-image: none; }
+      small { font-size: 85%; }
+      strong, th { font-weight: bold; }
+      td { vertical-align: top; }
+
+      sub, sup { font-size: 75%; line-height: 0; position: relative; }
+      sup { top: -0.5em; }
+      sub { bottom: -0.25em; }
+
+      pre { white-space: pre; white-space: pre-wrap; word-wrap: break-word; padding: 15px; }
+      textarea { overflow: auto; }
+      .ie6 legend, .ie7 legend { margin-left: -7px; }
+      input[type="radio"] { vertical-align: text-bottom; }
+      input[type="checkbox"] { vertical-align: bottom; }
+      .ie7 input[type="checkbox"] { vertical-align: baseline; }
+      .ie6 input { vertical-align: text-bottom; }
+      label, input[type="button"], input[type="submit"], input[type="image"], button { cursor: pointer; }
+      button, input, select, textarea { margin: 0; }
+      input:valid, textarea:valid   {  }
+      input:invalid, textarea:invalid { border-radius: 1px; -moz-box-shadow: 0px 0px 5px red; -webkit-box-shadow: 0px 0px 5px red; box-shadow: 0px 0px 5px red; }
+      .no-boxshadow input:invalid, .no-boxshadow textarea:invalid { background-color: #f0dddd; }
+
+      button {  width: auto; overflow: visible; }
+      .ie7 img { -ms-interpolation-mode: bicubic; }
+
+      body, select, input, textarea {  color: #423518; font-family: 'Oswald', sans-serif; }
+      h1, h2, h3, h4, h5, h6 { font-family: 'Oswald', arial, serif; }
+      footer { font-family: 'Copse', arial, serif; }
+      a, a:active, a:visited { color: #423518; text-decoration: none;}
+      a:hover { text-decoration: underline;}
+      p { margin-bottom: 10px; }
+
       html, body {
-        height: 100%;
         margin: 0;
         padding: 0;
       }
-
+      header {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 2;
+        padding: 15px 0;
+        text-align: center;
+        border-bottom: 1px solid rgba(0,0,0,.4);
+        box-shadow: 0 1px 6px rgba(0,0,0,.4);
+      }
+      header h1 {
+        font-size: 36px;
+      }
+      .map {
+        margin-top: 75px;
+      }
       #map_canvas {
-        height: 100%;
+        height: 650px;
+      }
+      footer {
+        text-align: center;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        height: 50px;
+        border-top: 1px solid rgba(0,0,0,.4);
+        box-shadow: 0 -1px 6px rgba(0,0,0,.6);
+        z-index: 2;
       }
 
       @media print {
         html, body {
           height: auto;
         }
-
         #map_canvas {
           height: 650px;
         }
@@ -38,7 +138,7 @@
     <script type="text/javascript">
       function initialize() {
         var myOptions = {
-          zoom: 16,
+          zoom: 15,
           center: new google.maps.LatLng(42.7875, -86.108889),
           mapTypeId: google.maps.MapTypeId.ROADMAP
         };
@@ -145,7 +245,7 @@
       <h1>The Blight of Holland's Central Neighborhoods</h1>
     </header>
 
-    <div id="map_canvas"></div>
+    <section class="map"><div id="map_canvas"></div></section>
 
     <footer>
       <p>Hacked together by <a href="">Matt Slack</a> and <a href="">Brian Ryckbost</a></p>
