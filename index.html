@@ -88,8 +88,15 @@
       body, select, input, textarea {  color: #2a2a2a; font-family: 'Oswald', sans-serif; }
       h1, h2, h3, h4, h5, h6 { font-family: 'Oswald', arial, serif; }
       footer { font-family: 'Copse', arial, serif; }
-      a, a:active, a:visited { color: #2a2a2a; text-decoration: none;}
-      a:hover { text-decoration: underline;}
+      a, a:active, a:visited {
+        color: rgba(255,255,255,1);
+        text-decoration: none;
+        -webkit-transition-duration: 0.25s;
+        -webkit-transition-property: color, text-shadow;
+      }
+      a:hover {
+        color: rgba(255,255,255,.6);
+      }
       p { margin-bottom: 10px; }
 
       html, body {
@@ -103,12 +110,14 @@
         z-index: 2;
         padding: 15px 0;
         text-align: center;
-        border-bottom: 1px solid rgba(0,0,0,.4);
+        border-bottom: 1px solid rgba(255,255,255,.5);
         box-shadow: 0 1px 6px rgba(0,0,0,.4);
+        background: #2a2a2a;
       }
       header h1 {
         font-size: 36px;
-        text-shadow: 1px 1px rgba(255,255,255,.4);
+        text-shadow: 1px 1px rgba(0,0,0,.4);
+        color: rgba(255,255,255,.9);
       }
       .map {
         margin-top: 75px;
@@ -122,9 +131,12 @@
         bottom: 0;
         width: 100%;
         height: 50px;
-        border-top: 1px solid rgba(0,0,0,.4);
+        border-top: 1px solid rgba(255,255,255,.5);
         box-shadow: 0 -1px 6px rgba(0,0,0,.6);
         z-index: 2;
+        background: #2a2a2a;
+        text-shadow: 1px 1px rgba(0,0,0,.4);
+        color: rgba(255,255,255,.9);
       }
 
       @media print {
@@ -243,13 +255,13 @@
   </head>
   <body>
     <header>
-      <h1>The Blight of Holland's Central Neighborhoods</h1>
+      <h1><a href="#">The Blight of Holland's Central Neighborhoods</a></h1>
     </header>
 
     <section class="map"><div id="map_canvas"></div></section>
 
     <footer>
-      <p>Hacked together by <a href="">Matt Slack</a> and <a href="">Brian Ryckbost</a></p>
+      <p>Hacked together by <a href="#">Matt Slack</a> and <a href="#">Brian Ryckbost</a></p>
     </footer>
   </body>
 </html>
