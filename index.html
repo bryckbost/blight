@@ -223,36 +223,36 @@
     </script>
     <script type="text/javascript" src="http://cdn.simplegeo.com/js/1.3/simplegeo.context.min.js"></script>
     <script>
-    simplegeo.ContextClient.prototype.getContext = function(lat, lon, options, callback) {
-      if (callback === undefined) {
-        callback = options;
-        options = {};
-      }
-      var path = "/1.0/context/" + lat + "," + lon + ".json"
-      if (options !== undefined) {
-        path += "?"
-        if (options.filter) {
-          path += options.filter
+      simplegeo.ContextClient.prototype.getContext = function(lat, lon, options, callback) {
+        if (callback === undefined) {
+          callback = options;
+          options = {};
         }
+        var path = "/1.0/context/" + lat + "," + lon + ".json"
+        if (options !== undefined) {
+          path += "?"
+          if (options.filter) {
+            path += options.filter
+          }
+        }
+        return this.request(path, options, callback);
       }
-      return this.request(path, options, callback);
-    }
 
-    // var client = new simplegeo.ContextClient('UHYsAGwU2XyWm9Qtp7D68EBQYpnCsWEG');
-    //
-    // var lat = 42.7758566;
-    // var lon = -86.0967353;
-    // var options = {filter: "demographics.acs__table=B19001"};
-    // var ctx;
-    //
-    // client.getContext(lat, lon, options, function(err, data) {
-    //     if (err) {
-    //         console.error(err);
-    //     } else {
-    //         ctx = data;
-    //     }
-    //     console.log(ctx.demographics)
-    // });
+      var client = new simplegeo.ContextClient('UHYsAGwU2XyWm9Qtp7D68EBQYpnCsWEG');
+    
+      var lat = 42.7758566;
+      var lon = -86.0967353;
+      var options = {filter: "demographics.acs__table=B19001"};
+      var ctx;
+    
+      client.getContext(lat, lon, options, function(err, data) {
+          if (err) {
+              console.error(err);
+          } else {
+              ctx = data;
+          }
+          console.log(ctx.demographics)
+      });
     </script>
   </head>
   <body>
