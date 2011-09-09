@@ -103,6 +103,8 @@
         margin: 0;
         padding: 0;
         overflow:hidden;
+        height: 100%;
+        position: relative;
       }
       header {
         position: fixed;
@@ -122,9 +124,10 @@
       }
       .map {
         margin-top: 75px;
+        height: 100%;
       }
       #map_canvas {
-        height: 650px;
+        height: 100%;
       }
       footer {
         text-align: center;
@@ -239,12 +242,12 @@
       }
 
       var client = new simplegeo.ContextClient('UHYsAGwU2XyWm9Qtp7D68EBQYpnCsWEG');
-    
+
       var lat = 42.7758566;
       var lon = -86.0967353;
       var options = {filter: "demographics.acs__table=B19001"};
       var ctx;
-    
+
       client.getContext(lat, lon, options, function(err, data) {
           if (err) {
               console.error(err);
